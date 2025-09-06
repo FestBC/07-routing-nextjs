@@ -16,14 +16,18 @@ import NoteList from "@/components/NoteList/NoteList";
 import Pagination from "@/components/Pagination/Pagination";
 import SearchBox from "@/components/SearchBox/SearchBox";
 
-export default function NotesClient() {
+interface Props {
+  tag: undefined | string
+};
+
+export default function NotesClient({ tag }: Props) {
     const [query, setQuery] = useState<string>("");
     const [page, setPage] = useState<number>(1);
     const [isModalOpened, setIsModalOpened] = useState<boolean>(false);
 
     const { data, isLoading, isError } = useQuery({
-        queryKey: ["notes", query, page],
-        queryFn: () => fetchNotes(query, page),
+        queryKey: ["notes", query, page, tag],
+        queryFn: () => fetchNotes(query, page, tag),
         placeholderData: keepPreviousData,
         refetchOnMount: false
     });

@@ -17,13 +17,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "HW №6"
+  title: "HW №7"
 };
 
 export default function RootLayout({
   children,
+  modal
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode,
+  modal: React.ReactNode
 }>) {
   return (
     <html lang="en">
@@ -32,6 +34,7 @@ export default function RootLayout({
           <Header />
           <main>
             {children}
+            {modal}
           </main>
           <Footer />
         </TanStackProvider>
